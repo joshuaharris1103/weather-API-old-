@@ -50,7 +50,7 @@ app.get('/weather/seed', (req, res) => {
         { name: 'Foggy', humidity: 'high', needUmbrella: false },
     ]
     // Delete every weather pattern in the database
-    Weather.deleteMany({}).then((data) => {
+    Weather.deleteMany({}).then(() => {
         // then we'll seed(create) our starter weather
         Weather.create(startWeather)
             // tell our db what to do with success and failures
@@ -62,20 +62,19 @@ app.get('/weather/seed', (req, res) => {
 })
 
 // INDEX route 
-// app.get('/weather', (req, res) => {
-//     // find all the Weather patterns
-//     Weather.find({})
-//         .then((weather) => { 
-//             res.json({ weather: weather })
-//         })
-//         .catch(err => console.log('The following error occurred: \n', err))
-// })
-app.get("/weather", (req, res) => {
-    Weather.find({}, (err, fruits) => {
-      res.json({ weather: weather })
-    })
-  })
-
+app.get('/weather', (req, res) => {
+    // find all the Weather patterns
+    Weather.find({})
+        .then((weather) => { 
+            res.json({ weather: weather })
+        })
+        .catch(err => console.log('The following error occurred: \n', err))
+})
+// app.get("/fruits", async (req, res) => {
+//     const weather = await Fruits.find({})
+//     res.json({ weather: weather })
+//   })
+  
 //CREATE route
 
 app.post('/weather', (req, res) => {
@@ -89,26 +88,23 @@ app.post('/weather', (req, res) => {
         .catch((err) => console.log(err))
 })
 
-// // PUT route
-// // Update -> updates a specific weather
-// // PUT replaces the entire document with a new document from the req.body
-// // PATCH is able to update specific fields at specific times, but it requires a little more code to ensure that it works properly, so we'll use that later
-// app.put('/weather/:id', (req, res) => {
-//     // save the id to a variable for easy use later
-//     const id = req.params.id
-//     // save the request body to a variable for easy reference later
-//     const updatedWeather = req.body
-//     // we're going to use the mongoose method:
-//     // findByIdAndUpdate
-//     // eventually we'll change how this route works, but for now, we'll do everything in one shot, with findByIdAndUpdate
-//     Weather.findByIdAndUpdate(id, updatedWeather, { new: true })
-//         .then(weather => {
-//             console.log('the newly updated weather', weather)
-//             // update success message will just be a 204 - no content
-//             res.sendStatus(204)
-//         })
-//         .catch(err => console.log(err))
-// })
+// PUT route
+
+app.put('/weather/:id', (req, res) => {
+    // get the id from params
+    const id = req.params.id
+    // save the request body to a variable for easy reference later
+    const updatedWeather = req.body
+    
+    // find and update the weather
+    Weather.findByIdAndUpdate(id, updatedWeather, { new: true })
+        .then((weather) => {
+            console.log('the newly updated weather', weather)
+            // update success message will just be a 204 - no content
+            res.sendStatus(204)
+        })
+        .catch(err => console.log(err))
+})
 // // DELETE route
 // // Delete -> delete a specific weather pattern
 // app.delete('/weather/:id', (req, res) => {
