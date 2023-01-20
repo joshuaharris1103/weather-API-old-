@@ -5,7 +5,27 @@
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.4",
     "morgan": "^1.10.0",
-    "node": "^19.4.0",
+    "node": "^19.4.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "weather-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuaharris1103/weather-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshuaharris1103/weather-API/issues"
+  },
+  "homepage": "https://github.com/joshuaharris1103/weather-API#readme",
+  "description": "",
+  "devDependencies": {
     "nodemon": "^2.0.20"
   }
 }
