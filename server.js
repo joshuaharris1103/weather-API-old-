@@ -121,20 +121,17 @@ app.delete('/weather/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-// // SHOW route
-// // Read -> finds and displays a single resource
-// app.get('/weather/:id', (req, res) => {
-//     // get the id -> save to a variable
-//     const id = req.params.id
-//     // use a mongoose method to find using that id
-//     Weather.findById(id)
-//         // send the weather pattern as json upon success
-//         .then(weather => {
-//             res.json({ weather: weather })
-//         })
-//         // catch any errors
-//         .catch(err => console.log(err))
-// })
+// SHOW route
+app.get('/weather/:id', (req, res) => {
+    // get the id -> save to a variable
+    const id = req.params.id
+    Weather.findById(id)
+        // send the weather pattern as json upon success
+        .then(weather => {
+            res.json({ weather: weather })
+        })
+        .catch(err => console.log(err))
+})
 
 
 
