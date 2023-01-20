@@ -105,20 +105,21 @@ app.put('/weather/:id', (req, res) => {
         })
         .catch(err => console.log(err))
 })
-// // DELETE route
-// // Delete -> delete a specific weather pattern
-// app.delete('/weather/:id', (req, res) => {
-//     // get the id from the req
-//     const id = req.params.id
-//     // find and delete the weather patter
-//     Weather.findByIdAndRemove(id)
-//         // send a 204 if successful
-//         .then(() => {
-//             res.sendStatus(204)
-//         })
-//         // send an error if not
-//         .catch(err => console.log(err))
-// })
+
+// DELETE route
+// Delete -> delete a specific weather pattern
+app.delete('/weather/:id', (req, res) => {
+    // get the id from the req
+    const id = req.params.id
+    // find and delete the weather patter
+    Weather.findByIdAndRemove(id)
+        // send a 204 if successful
+        .then(() => {
+            res.sendStatus(204)
+        })
+        // send an error if not
+        .catch(err => console.log(err))
+})
 
 // // SHOW route
 // // Read -> finds and displays a single resource
