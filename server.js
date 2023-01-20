@@ -94,10 +94,10 @@ app.put('/weather/:id', (req, res) => {
     // get the id from params
     const id = req.params.id
     // save the request body to a variable for easy reference later
-    const updatedWeather = req.body
-    
+    // const updatedWeather = req.body
+    req.body.needUmbrella = req.body.needUmbrella === "on" ? true : false
     // find and update the weather
-    Weather.findByIdAndUpdate(id, updatedWeather, { new: true })
+    Weather.findByIdAndUpdate(id, req.body.needUmbrella, { new: true })
         .then((weather) => {
             console.log('the newly updated weather', weather)
             // update success message will just be a 204 - no content
